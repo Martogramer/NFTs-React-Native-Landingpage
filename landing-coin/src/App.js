@@ -18,7 +18,6 @@ const App = () => {
         mockupImg={assets.homeCards}
         reverse
       />
-      <Features />
       <SectionWrapper 
         title="Deployment"
         description="ProNef is built using Expo which runs natively on all users' devices. You can easily get your app into people's hands"
