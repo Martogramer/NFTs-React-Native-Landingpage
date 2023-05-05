@@ -1,5 +1,5 @@
 import React from "react";
-
+import Form from "./Form";
 import styles from "../styles/Global";
 import assets from "../assets";
 import Button from "./Button";
@@ -43,14 +43,20 @@ const SectionWrapper = ({
                     >
                         {description}
                     </p>
-                    {showBtn && (
+
+                    <Form />
+
+                    {/* {showBtn && (
                         <Button
                             assetUrl={assets.expo}
                             link="https://expo.dev/@adrianhajdin/react_native_app?serviceType=classic&distribution=expo-go"
                         />
-                    )}
+                    )} */}
                 </div>
-                <div className={`flex-1 ${styles.flexCenter}p-8 sm:px-0`}>
+
+
+
+                {/* <div className={`flex-1 ${styles.flexCenter}p-8 sm:px-0`}>
                     <img
                         src={mockupImg}
                         alt="mockup"
@@ -58,7 +64,7 @@ const SectionWrapper = ({
            ${reverse ? " fadeLeftMini" : " fadeRightMini"}
           ${styles.sectionImg}`}
                     />
-                </div>
+                </div> */}
             </div>
         </div>
     );
