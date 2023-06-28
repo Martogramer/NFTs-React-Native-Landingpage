@@ -1,20 +1,64 @@
-import React from "react";
+import React, { useState } from "react";
+import { addDestination } from '../state/actions/destinationActions';
+import { useDispatch } from "react-redux";
+
+
 
 const Form = () => {
+    const dispatch = useDispatch();
+    const [nameSeller, setNameSeller] = useState('');
+    const [name, setName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [location, setLocation] = useState('');
+    const [enterprice, setEnterprice] = useState('');
+    const [category, setCategory] = useState('');
+    const [size, setSize] = useState('');
+    const [description, setDescription] = useState('');
+    const [notification, setNotification] = useState('');
+    
+    const handleFormSubmit = (e) => {
+        e.preventDefault();
+        const newDestination = {
+            nameSeller,
+            name,
+            lastName,
+            email,
+            location,
+            enterprice,
+            category,
+            size,
+            description,
+            
+        };
+        dispatch(addDestination(newDestination));
+        setNameSeller('');
+        setName('');
+        setLastName('');
+        setEmail('');
+        setLocation('');
+        setEnterprice('');
+        setCategory('');
+        setSize('');
+        setDescription('');
+        
+        console.log(newDestination)
+    };
+
     return (
-        <form>
-            <div class="space-y-12">
-                <div class="border-b border-gray-900/10 pb-12">
+        <form onSubmit={handleFormSubmit}>
+            <div className="space-y-12">
+                <div className="border-b border-gray-900/10 pb-12">
            {/*          <h2 class="text-base font-semibold leading-7 text-gray-900">Profile</h2>
                     <p class="mt-1 text-sm leading-6 text-gray-600">This information will be displayed publicly so be careful what you share.</p>
  */}
-                    <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                        <div class="sm:col-span-4">
-                            <label for="username" class="block text-sm font-medium leading-6 text-gray-900">Nombre del vendedor</label>
-                            <div class="mt-2">
-                                <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                                    <span class="flex select-none items-center pl-3 text-gray-500 sm:text-sm">befree.one/</span>
-                                    <input type="text" name="username" id="username" autocomplete="username" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="janesmith" />
+                    <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                        <div className="sm:col-span-4">
+                            <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">Nombre del vendedor</label>
+                            <div className="mt-2">
+                                <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                                    <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">befree.one/</span>
+                                    <input value={nameSeller} onChange={(e) => setNameSeller(e.target.value)} type="text" name="username" id="username"  className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="janesmith" />
                                 </div>
                             </div>
                         </div>
@@ -53,29 +97,29 @@ const Form = () => {
                     </div>
                 </div>
 
-                <div class="border-b border-gray-900/10 pb-12">
-                    <h2 class="text-base font-semibold leading-7 text-gray-900">Información del cliente</h2>
-                    <p class="mt-1 text-sm leading-6 text-gray-600">Complete los datos específicos para que el cliente pueda ser contactado correctamente.</p>
+                <div className="border-b border-gray-900/10 pb-12">
+                    <h2 className="text-base font-semibold leading-7 text-gray-900">Información del cliente</h2>
+                    <p className="mt-1 text-sm leading-6 text-gray-600">Complete los datos específicos para que el cliente pueda ser contactado correctamente.</p>
 
-                    <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                        <div class="col-span-full">
-                            <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">Nombre</label>
-                            <div class="mt-2">
-                                <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                    <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                        <div className="col-span-full">
+                            <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">Nombre</label>
+                            <div className="mt-2">
+                                <input value={name} onChange={(e) => setName(e.target.value)} type="text" name="first-name" id="first-name" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                             </div>
                         </div>
 
-                        <div class="col-span-full">
-                            <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">Apellido</label>
-                            <div class="mt-2">
-                                <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                        <div className="col-span-full">
+                            <label htmlFor="last-name" className="block text-sm font-medium leading-6 text-gray-900">Apellido</label>
+                            <div className="mt-2">
+                                <input value={lastName} onChange={(e) => setLastName(e.target.value)} type="text" name="last-name" id="last-name" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                             </div>
                         </div>
 
-                        <div class="col-span-full">
-                            <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
-                            <div class="mt-2">
-                                <input id="email" name="email" type="email" autocomplete="email" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                        <div className="col-span-full">
+                            <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">Email</label>
+                            <div className="mt-2">
+                                <input value={email} onChange={(e) => setEmail(e.target.value)} id="email" name="email" type="email"  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                             </div>
                         </div>
 
@@ -90,40 +134,40 @@ const Form = () => {
                             </div>
                         </div> */}
 
-                        <div class="col-span-full">
-                            <label for="street-address" class="block text-sm font-medium leading-6 text-gray-900">Localidad</label>
-                            <div class="mt-2">
-                                <input type="text" name="street-address" id="street-address" autocomplete="street-address" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                        <div className="col-span-full">
+                            <label htmlFor="street-address" className="block text-sm font-medium leading-6 text-gray-900">Localidad</label>
+                            <div className="mt-2">
+                                <input value={location} onChange={(e) => setLocation(e.target.value)} type="text" name="street-address" id="street-address" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                             </div>
                         </div>
 
-                        <div class="col-span-full">
-                            <label for="street-address" class="block text-sm font-medium leading-6 text-gray-900">Nombre de la empresa</label>
-                            <div class="mt-2">
-                                <input type="text" name="street-address" id="street-address" autocomplete="street-address" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                        <div className="col-span-full">
+                            <label htmlFor="street-address" className="block text-sm font-medium leading-6 text-gray-900">Nombre de la empresa</label>
+                            <div className="mt-2">
+                                <input value={enterprice} onChange={(e) => setEnterprice(e.target.value)} type="text" name="street-address" id="street-address" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                             </div>
                         </div>
 
-                        <div class="col-span-full">
-                            <label for="city" class="block text-sm font-medium leading-6 text-gray-900">Rubro</label>
-                            <div class="mt-2">
-                                <input type="text" name="city" id="city" autocomplete="address-level2" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                        <div className="col-span-full">
+                            <label htmlFor="city" className="block text-sm font-medium leading-6 text-gray-900">Rubro</label>
+                            <div className="mt-2">
+                                <input value={category} onChange={(e) => setCategory(e.target.value)} type="text" name="city" id="city" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                             </div>
                         </div>
 
-                        <div class="col-span-full">
-                            <label for="region" class="block text-sm font-medium leading-6 text-gray-900">Tamaño de la empresa</label>
-                            <div class="mt-2">
-                                <input type="text" name="region" id="region" autocomplete="address-level1" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                        <div className="col-span-full">
+                            <label htmlFor="region" className="block text-sm font-medium leading-6 text-gray-900">Tamaño de la empresa</label>
+                            <div className="mt-2">
+                                <input value={size} onChange={(e) => setSize(e.target.value)} type="text" name="region" id="region" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                             </div>
                         </div>
 
-                        <div class="col-span-full">
-                            <label for="about" class="block text-sm font-medium leading-6 text-gray-900">Especificaciones</label>
-                            <div class="mt-2">
-                                <textarea id="about" name="about" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
+                        <div className="col-span-full">
+                            <label htmlFor="about" className="block text-sm font-medium leading-6 text-gray-900">Especificaciones</label>
+                            <div className="mt-2">
+                                <textarea value={description} onChange={(e) => setDescription(e.target.value)} id="about" name="about" rows="3" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
                             </div>
-                            <p class="mt-3 text-sm leading-6 text-gray-600"> Cuentanos para qué usarias tu página web.</p>
+                            <p className="mt-3 text-sm leading-6 text-gray-600"> Cuentanos para qué usarias tu página web.</p>
                         </div>
 
                         {/* <div class="sm:col-span-2">
@@ -135,38 +179,38 @@ const Form = () => {
                     </div>
                 </div>
 
-                <div class="border-b border-gray-900/10 pb-12">
-                    <h2 class="text-base font-semibold leading-7 text-gray-900">Notificaciones</h2>
-                    <p class="mt-1 text-sm leading-6 text-gray-600">¿Qué medio prefieres que usemos para contactarte?</p>
+                <div className="border-b border-gray-900/10 pb-12">
+                    <h2 className="text-base font-semibold leading-7 text-gray-900">Notificaciones</h2>
+                    <p className="mt-1 text-sm leading-6 text-gray-600">¿Qué medio prefieres que usemos para contactarte?</p>
 
-                    <div class="mt-10 space-y-10">
+                    <div className="mt-10 space-y-10">
                         <fieldset>
-                            <div class="mt-6 space-y-6">
-                                <div class="relative flex gap-x-3">
-                                    <div class="flex h-6 items-center">
-                                        <input id="comments" name="comments" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" />
+                            <div className="mt-6 space-y-6">
+                                <div className="relative flex gap-x-3">
+                                    <div className="flex h-6 items-center">
+                                        <input id="comments" name="comments" type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" />
                                     </div>
-                                    <div class="text-sm leading-6">
-                                        <label for="comments" class="font-medium text-gray-900">Email</label>
-                                        <p class="text-gray-500">Get notified when someones posts a comment on a posting.</p>
-                                    </div>
-                                </div>
-                                <div class="relative flex gap-x-3">
-                                    <div class="flex h-6 items-center">
-                                        <input id="candidates" name="candidates" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" />
-                                    </div>
-                                    <div class="text-sm leading-6">
-                                        <label for="candidates" class="font-medium text-gray-900">Llamada Telefónica</label>
-                                        <p class="text-gray-500">Get notified when a candidate applies for a job.</p>
+                                    <div className="text-sm leading-6">
+                                        <label htmlFor="comments" className="font-medium text-gray-900">Email</label>
+                                        <p className="text-gray-500">Get notified when someones posts a comment on a posting.</p>
                                     </div>
                                 </div>
-                                <div class="relative flex gap-x-3">
-                                    <div class="flex h-6 items-center">
-                                        <input id="offers" name="offers" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" />
+                                <div className="relative flex gap-x-3">
+                                    <div className="flex h-6 items-center">
+                                        <input id="candidates" name="candidates" type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" />
                                     </div>
-                                    <div class="text-sm leading-6">
-                                        <label for="offers" class="font-medium text-gray-900">Whatsapp</label>
-                                        <p class="text-gray-500">Get notified when a candidate accepts or rejects an offer.</p>
+                                    <div className="text-sm leading-6">
+                                        <label htmlFor="candidates" className="font-medium text-gray-900">Llamada Telefónica</label>
+                                        <p className="text-gray-500">Get notified when a candidate applies for a job.</p>
+                                    </div>
+                                </div>
+                                <div className="relative flex gap-x-3">
+                                    <div className="flex h-6 items-center">
+                                        <input id="offers" name="offers" type="checkbox" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" />
+                                    </div>
+                                    <div className="text-sm leading-6">
+                                        <label htmlFor="offers" className="font-medium text-gray-900">Whatsapp</label>
+                                        <p className="text-gray-500">Get notified when a candidate accepts or rejects an offer.</p>
                                     </div>
                                 </div>
                             </div>
@@ -196,9 +240,9 @@ const Form = () => {
                 </div>
             </div>
 
-            <div class="mt-6 flex items-center justify-end gap-x-6">
-                <button type="button" class="text-sm font-semibold leading-6 text-gray-900">Cancel</button>
-                <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
+            <div className="mt-6 flex items-center justify-end gap-x-6">
+                <button type="button" className="text-sm font-semibold leading-6 text-gray-900">Cancel</button>
+                <button type="submit" className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
             </div>
         </form>
     )
