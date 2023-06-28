@@ -5,13 +5,13 @@ const BASE_URL = 'http://localhost:3001'; // Reemplaza con la URL de tu API back
 // Función para obtener todos los destinos turísticos
 export const getDestinations = async () => {
   const response = await axios.get(`${BASE_URL}/destinations`);
-  console.log("data")
   return response.data;
 };
 
 // Función para crear un nuevo destino turístico
 export const createDestination = async (destination) => {
   const response = await axios.post(`${BASE_URL}/destinations`, destination);
+  
   return response.data;
 };
 
